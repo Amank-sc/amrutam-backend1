@@ -29,6 +29,7 @@ jobs:
 
     # Step 3: Install dependencies
     - run: npm install
+    - run: chmod +x node_modules/.bin/jest
 
     # Step 4: Run tests
     - run: npm test
