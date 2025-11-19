@@ -1,0 +1,40 @@
+                ┌─────────────┐
+                │   Frontend  │
+                │  (React)    │
+                └─────┬──────┘
+                      │ HTTP Requests
+                      ▼
+                ┌─────────────┐
+                │   Express   │
+                │   REST API  │
+                └─────┬──────┘
+                      │
+         ┌────────────┴─────────────┐
+         │                          │
+ ┌───────────────┐          ┌───────────────┐
+ │ Controllers   │          │ Middlewares   │
+ │ Business Logic│          │ Auth, Metrics │
+ └───────┬───────┘          └───────────────┘
+         │
+         ▼
+ ┌───────────────┐
+ │   Services    │
+ │ Booking,      │
+ │ Consultation  │
+ └───────┬───────┘
+         │
+         ▼
+ ┌───────────────┐
+ │ PostgreSQL    │
+ │ (Sequelize)   │
+ └───────┬───────┘
+         │
+ ┌───────────────┐
+ │ Redis Cache   │
+ │ (optional)    │
+ └───────────────┘
+
+Extras:
+- Logging: Winston + Morgan
+- Metrics: Prometheus
+- CI/CD: GitHub Actions

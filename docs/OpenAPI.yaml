@@ -1,0 +1,107 @@
+openapi: 3.0.0
+info:
+  title: Amrutam Telemedicine API
+  version: 1.0.0
+  description: API for telemedicine platform
+
+paths:
+  /api/auth/register:
+    post:
+      summary: Register user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name: { type: string }
+                email: { type: string }
+                password: { type: string }
+                role: { type: string }
+      responses:
+        '201':
+          description: User registered successfully
+
+  /api/auth/login:
+    post:
+      summary: Login user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email: { type: string }
+                password: { type: string }
+      responses:
+        '200':
+          description: Login successful
+
+  /api/doctor/set-availability:
+    post:
+      summary: Add availability slot (Doctor only)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                date: { type: string, format: date }
+                startTime: { type: string }
+                endTime: { type: string }
+      responses:
+        '201':
+          description: Availability added
+
+  /api/booking/book:
+    post:
+      summary: Book consultation (Patient only)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                doctorId: { type: string }
+                slotId: { type: string }
+                notes: { type: string }
+      responses:
+        '201':
+          description: Consultation booked
+
+  /api/consultation/update-status:
+    put:
+      summary: Update consultation status (Doctor/Admin)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                consultationId: { type: string }
+                status: { type: string }
+      responses:
+        '200':
+          description: Status updated
+
+  /api/consultation/prescription:
+    post:
+      summary: Add prescription (Doctor only)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                consultationId: { type: string }
+                medicines: { type: array, items: { type: object } }
+                notes: { type: string }
+      responses:
+        '201':
+          description: Prescription added

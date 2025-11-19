@@ -1,0 +1,36 @@
+User
+ ├── id (PK)
+ ├── name
+ ├── email
+ ├── password
+ └── role (user/doctor/admin)
+
+Doctor
+ ├── id (PK)
+ ├── userId (FK -> User.id)
+ ├── specialization
+ ├── experience
+ └── bio
+
+Availability
+ ├── id (PK)
+ ├── doctorId (FK -> Doctor.id)
+ ├── date
+ ├── startTime
+ └── endTime
+
+Consultation
+ ├── id (PK)
+ ├── patientId (FK -> User.id)
+ ├── doctorId (FK -> Doctor.id)
+ ├── slotId (FK -> Availability.id)
+ ├── status (pending/confirmed/completed/cancelled)
+ └── notes
+
+Prescription
+ ├── id (PK)
+ ├── consultationId (FK -> Consultation.id)
+ ├── doctorId (FK -> Doctor.id)
+ ├── patientId (FK -> User.id)
+ ├── medicines (JSON)
+ └── notes
